@@ -218,22 +218,60 @@
       }
 
       function drawSciFiSkeleton(hand, gx, gy) {
-        stroke(red(mainColor), green(mainColor), blue(mainColor), 80);
+        colorMode(HSB, 360, 100, 100, 100);
+        const fingerHue = (idx) => {
+          if (idx >= 1  && idx <= 4)  return 0;    // 紅 - 拇指
+          if (idx >= 5  && idx <= 8)  return 210;  // 藍 - 食指
+          if (idx >= 9  && idx <= 12) return 120;  // 綠 - 中指
+          if (idx >= 13 && idx <= 16) return 280;  // 紫 - 無名指
+          if (idx >= 17 && idx <= 20) return 50;   // 黃 - 小指
+          return 200;
+        };
         let connections = handPose.getConnections();
         for (let i = 0; i < connections.length; i++) {
           let a = connections[i][0], b = connections[i][1];
-          line(map(hand.keypoints[a].x, 0, 640, 0, width) + gx, map(hand.keypoints[a].y, 0, 480, 0, height) + gy,
-               map(hand.keypoints[b].x, 0, 640, 0, width) + gx, map(hand.keypoints[b].y, 0, 480, 0, height) + gy);
+          let hue = (fingerHue(b) + frameCount * 0.8) % 360;
+          let ax = map(hand.keypoints[a].x, 0, 640, 0, width) + gx;
+          let ay = map(hand.keypoints[a].y, 0, 480, 0, height) + gy;
+          let bx = map(hand.keypoints[b].x, 0, 640, 0, width) + gx;
+          let by = map(hand.keypoints[b].y, 0, 480, 0, height) + gy;
+          stroke(hue, 80, 100, 20); strokeWeight(18); line(ax, ay, bx, by);  // 外暈
+          stroke(hue, 70, 100, 50); strokeWeight(8);  line(ax, ay, bx, by);  // 中暈
+          stroke(hue, 30, 100, 100); strokeWeight(2); line(ax, ay, bx, by); // 亮線
         }
+        colorMode(RGB, 255);
       }
 
       function drawFingertips(hand, gx, gy) {
-        [4, 8, 12, 16, 20].forEach(idx => {
+        colorMode(HSB, 360, 100, 100, 100);
+        for (let idx = 0; idx < 21; idx++) {
           let k = hand.keypoints[idx];
-          let x = map(k.x, 0, 640, 0, width) + gx, y = map(k.y, 0, 480, 0, height) + gy;
-          noFill(); stroke(255, 180); circle(x, y, 12);
-          fill(255, 150); textSize(9); text(`ID:${idx}`, x+15, y-10);
-        });
+          if (!k) continue;
+          let x = map(k.x, 0, 640, 0, width) + gx;
+          let y = map(k.y, 0, 480, 0, height) + gy;
+          let hue = (idx * 18 + frameCount * 2) % 360;
+          let pulse = sin(frameCount * 6 + idx * 0.8) * 5;
+          if (idx === 20) {  // 小指指尖：火花特效
+            for (let r = 40; r >= 10; r -= 10) {
+              stroke(hue, 85, 100, map(r, 10, 40, 70, 10));
+              strokeWeight(3); noFill();
+              circle(x, y, r * 2 + pulse);
+            }
+            fill(hue, 50, 100); noStroke(); circle(x, y, 12 + pulse * 0.5);
+            for (let s = 0; s < 8; s++) {  // 8根艶光
+              let angle = (frameCount * 4 + s * 45) % 360;
+              stroke(hue, 90, 100, 90); strokeWeight(1.5);
+              line(x + cos(angle)*14, y + sin(angle)*14,
+                   x + cos(angle)*(22 + random(8)), y + sin(angle)*(22 + random(8)));
+            }
+          } else {
+            noFill();
+            stroke(hue, 70, 100, 35); strokeWeight(2.5); circle(x, y, 24 + pulse);
+            stroke(hue, 50, 100, 80); strokeWeight(1.5); circle(x, y, 14 + pulse * 0.5);
+            fill(hue, 40, 100); noStroke(); circle(x, y, 7);
+          }
+        }
+        colorMode(RGB, 255);
       }
 
       function drawVirtualButtons(gx, gy) {
