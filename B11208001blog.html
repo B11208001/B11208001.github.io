@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家人：當代社會的情感重構 - 主題探索報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                            accent: '#ef4444', // Red for requested footer
+                            primary: '#6366f1', // Indigo
+                            secondary: '#a855f7', // Purple
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-brand-primary/30">
+
+    <!-- Header Section -->
+    <header class="relative pt-12 pb-8 px-6 text-center overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.15)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="relative z-10 animate-fade-in-up">
+            <h1 class="font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight">家人 <span class="gradient-text">Family</span></h1>
+            <p class="text-slate-400 text-lg md:text-xl font-light">學號：B11208001</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 space-y-24 pb-20">
+
+        <!-- 置頂：資訊圖表 -->
+        <section class="animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                <div class="relative glass-card rounded-2xl overflow-hidden p-2">
+                    <div class="flex items-center justify-between px-4 py-2 border-b border-white/5 mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-slate-500">Infographic / 核心摘要資訊圖</span>
+                        <div class="flex space-x-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                        </div>
+                    </div>
+                    <img src="https://opal.google/board/blobs/50a9b0b1-b1a3-4aa1-9d2b-0e45b642635c" alt="Family Research Infographic" class="w-full h-auto rounded-lg shadow-2xl transition duration-500 group-hover:scale-[1.01]">
+                </div>
+            </div>
+            <p class="mt-4 text-center text-sm text-slate-500 italic">已根據報告內容摘要製作完成 16:9 規格的繁體中文資訊圖表。</p>
+        </section>
+
+        <!-- 置中：短影片 -->
+        <section class="flex flex-col items-center animate-fade-in-up" style="animation-delay: 0.4s;">
+            <div class="w-full max-w-3xl glass-card rounded-[2rem] p-4 md:p-6 shadow-2xl relative">
+                <div class="absolute -top-12 left-6 text-slate-500 font-display text-4xl opacity-20 pointer-events-none">02</div>
+                <h3 class="text-xl font-display font-semibold mb-6 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center text-white">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    觀點影音摘要
+                </h3>
+                <div class="aspect-video rounded-xl overflow-hidden bg-black/40 ring-1 ring-white/10">
+                    <video src="https://opal.google/board/blobs/02aa74ce-42c5-48e8-86fa-9702d232d866" alt="Family Dynamics Video" controls class="w-full h-full object-cover"></video>
+                </div>
+            </div>
+        </section>
+
+        <!-- 置底：報告內容 -->
+        <section class="space-y-16 animate-fade-in-up" style="animation-delay: 0.6s;">
+            
+            <!-- Abstract / Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden">
+                    <div class="absolute right-0 top-0 w-32 h-32 bg-brand-primary opacity-5 blur-[80px]"></div>
+                    <h2 class="text-3xl font-display font-bold mb-6 flex items-center gap-3">
+                        摘要 <span class="text-brand-primary">Executive Summary</span>
+                    </h2>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <li class="flex gap-4">
+                            <span class="text-brand-primary text-2xl font-bold">01</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">結構多元化</h4>
+                                <p class="text-slate-400 text-sm mt-1">現代家庭已從傳統核心家庭轉向單親、重組及「選擇性家庭」的多元模式。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-brand-primary text-2xl font-bold">02</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">情感韌性與勞動</h4>
+                                <p class="text-slate-400 text-sm mt-1">重點從功能缺失轉向「情感韌性」，強調「情緒勞動」在穩定的關鍵角色。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-brand-primary text-2xl font-bold">03</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">科技雙刃劍</h4>
+                                <p class="text-slate-400 text-sm mt-1">數位工具帶來「科技干擾」與「角色衝突」，但也提供遠距連結的可能。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-brand-primary text-2xl font-bold">04</span>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">代際與社會變遷</h4>
+                                <p class="text-slate-400 text-sm mt-1">高齡化催生「三明治世代」照護壓力，年輕一代重視「原生家庭傷痛」修復。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Main Article Content -->
+                <article class="md:col-span-2 space-y-12 mt-10">
+                    
+                    <div class="prose prose-invert max-w-none">
+                        <div class="mb-12">
+                            <h3 class="text-2xl font-display font-bold text-white mb-4 flex items-center gap-4">
+                                <span class="h-px flex-1 bg-gradient-to-r from-brand-primary/50 to-transparent"></span>
+                                一、 緒論：家人的定義與當代轉譯
+                            </h3>
+                            <p class="text-slate-300 leading-relaxed text-lg">
+                                「家人」（Family）在傳統定義中多指基於血緣、婚姻或收養關係而共同生活的群體。然而，進入21世紀後，受全球化、高齡化及數位化的衝擊，家人的內涵正經歷深刻的重構。根據2021至2026年間的社會學回顧性研究，家庭不再僅僅是一個經濟單位，而是一個動態的 <span class="text-brand-primary font-medium">「情感支持系統」（Emotional Support System）</span>，其界限正變得日益模糊且具備彈性。
+                            </p>
+                        </div>
+
+                        <div class="mb-12">
+                            <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center gap-4">
+                                <span class="h-px flex-1 bg-gradient-to-r from-brand-secondary/50 to-transparent"></span>
+                                二、 現代家庭結構的多元面貌
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                                    <h4 class="text-brand-secondary font-bold mb-3">1. 多元結構的崛起</h4>
+                                    <p class="text-slate-400 text-sm leading-relaxed">
+                                        包含「單親家庭」、「重組家庭」及「彩虹家庭」比例顯著上升。2025年研究強調了「選擇性家庭」（Chosen Family）的概念，即非血緣關係者因共同價值觀或生活支持而形成的緊密連結。
+                                    </p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                                    <h4 class="text-brand-secondary font-bold mb-3">2. 三明治世代的挑戰</h4>
+                                    <p class="text-slate-400 text-sm leading-relaxed">
+                                        高齡化社會導致需同時負擔育兒與長照的雙重壓力。2024年文獻顯示，這種結構性壓力常引發「心理疲勞」（Psychological Burnout），成為現代家庭衝突的核心來源。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-12">
+                            <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center gap-4">
+                                <span class="h-px flex-1 bg-gradient-to-r from-brand-primary/50 to-transparent"></span>
+                                三、 心理健康、情感韌性與勞動
+                            </h3>
+                            <div class="space-y-6 text-slate-300">
+                                <p>現代家庭研究的核心正從單純的「家庭功能」轉向「韌性」。</p>
+                                <div class="pl-6 border-l-2 border-brand-primary/30 space-y-4">
+                                    <p><strong class="text-white">● 家庭韌性：</strong> 在後疫情時代的文獻中被視為應對集體危機的關鍵，健全的家庭能透過共享信念與溝通緩衝外界壓力。</p>
+                                    <p><strong class="text-white">● 情緒勞動的分配：</strong> 2024年報告強調維持氣氛穩定、照顧成員感受的隱形成本，若分配不均常引發關係崩解。</p>
+                                    <p><strong class="text-white">● 原生家庭與修復：</strong> Z世代對「原生家庭」帶來的「代際創傷」表現出高度覺醒，推動家庭輔導朝向關係和解而非單純紀律維持。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-12">
+                            <h3 class="text-2xl font-display font-bold text-white mb-6 flex items-center gap-4">
+                                <span class="h-px flex-1 bg-gradient-to-r from-brand-secondary/50 to-transparent"></span>
+                                四、 數位時代下的科技干擾與邊界
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="p-5 rounded-xl bg-slate-800/50 border-t-2 border-indigo-400">
+                                    <div class="text-xs font-bold text-indigo-400 mb-2">TECHNOFERENCE</div>
+                                    <h5 class="text-white font-bold mb-2">科技干擾現象</h5>
+                                    <p class="text-xs text-slate-400">指出手機螢幕的過度介入會顯著降低成員間的心理安全感。</p>
+                                </div>
+                                <div class="p-5 rounded-xl bg-slate-800/50 border-t-2 border-purple-400">
+                                    <div class="text-xs font-bold text-purple-400 mb-2">ROLE CONFLICT</div>
+                                    <h5 class="text-white font-bold mb-2">職場邊界模糊</h5>
+                                    <p class="text-xs text-slate-400">實體陪伴增加，但心理質量的連結卻因遠距辦公侵蝕而變得脆弱。</p>
+                                </div>
+                                <div class="p-5 rounded-xl bg-slate-800/50 border-t-2 border-emerald-400">
+                                    <div class="text-xs font-bold text-emerald-400 mb-2">AI ASSISTANCE</div>
+                                    <h5 class="text-white font-bold mb-2">醫療與AI照護</h5>
+                                    <p class="text-xs text-slate-400">AI機器人分擔體力性照護，但能否取代家人的情緒支撐仍是爭議核心。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 p-8 rounded-3xl border border-white/5">
+                            <h3 class="text-2xl font-display font-bold text-white mb-4">五、 結論</h3>
+                            <p class="text-slate-300 italic leading-relaxed">
+                                現代「家人」的意涵已超越生理血緣與法律形式，轉變為一種強調溝通質量與心理安全的契約關係。面對結構破碎化與科技侵佔的挑戰，「建立清晰的數位邊界」與「公平分配家庭情緒勞動」將是增進現代家庭福祉的關鍵。家庭結構雖在解構，但其作為情感避風港的核心訴求在危機中反而更顯重要。
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- References Section -->
+                <div class="md:col-span-2 pt-12">
+                    <div class="section-divider mb-8"></div>
+                    <h4 class="text-slate-500 font-display text-sm tracking-widest uppercase mb-6">引用文獻 Reference</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-500">
+                        <div class="p-3 border-l border-white/10 hover:bg-white/5 transition">
+                            <span class="block font-bold text-slate-400 mb-1">Journal of Family Psychology (2023-2025)</span>
+                            Recent Trends in Digital Communication and Family Well-being.
+                        </div>
+                        <div class="p-3 border-l border-white/10 hover:bg-white/5 transition">
+                            <span class="block font-bold text-slate-400 mb-1">Pew Research Center (2024)</span>
+                            The Changing Profile of Global Family Structures and Single-person Households.
+                        </div>
+                        <div class="p-3 border-l border-white/10 hover:bg-white/5 transition">
+                            <span class="block font-bold text-slate-400 mb-1">Annual Review of Sociology (2025)</span>
+                            Neoliberalism, Care Work, and the Shifting Responsibility of Families.
+                        </div>
+                        <div class="p-3 border-l border-white/10 hover:bg-white/5 transition">
+                            <span class="block font-bold text-slate-400 mb-1">Social Sciences Review (2022)</span>
+                            Post-Pandemic Family Resilience and Emotional Labor Distribution.
+                        </div>
+                        <div class="p-3 border-l border-white/10 hover:bg-white/5 transition md:col-span-2">
+                            <span class="block font-bold text-slate-400 mb-1">Emerging Trends in AI and Society (2026)</span>
+                            The Role of AI Caregivers in Modern Multigenerational Households.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 置中Footer -->
+        <footer class="pt-16 pb-12 flex justify-center">
+            <div class="glass-card px-8 py-4 rounded-full text-sm md:text-base text-slate-300">
+                【主題探索報告】by <span class="italic text-brand-accent font-semibold ml-1">Famidoc Chang</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Simple scroll reveal for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(30px)";
+            section.style.transition = "all 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
