@@ -3,297 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1994-1998 全球金融危機學習資源網</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>怕渴英文 | TOEIC & IELTS 學生資源網</title>
     <style>
+        /* === 基礎設計與變數 === */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #3182ce;
+            --accent-color: #e2e8f0;
+            --text-main: #2d3748;
+            --text-light: #718096;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
         }
-        /* 折疊選單動畫過渡 */
-        .accordion-content {
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
+
+        /* === 頁首與搜尋框 === */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .accordion-content.open {
-            max-height: 500px; /* 足夠容納內容的高度 */
-            opacity: 1;
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
         }
-        .rotate-180 {
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .search-container input:focus {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* === 折疊式選單 FAQ (Accordion) === */
+        .faq-section {
+            margin-bottom: 4rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion {
+            background-color: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 1.2rem 1rem;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid var(--accent-color);
+            outline: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            color: var(--secondary-color);
+        }
+
+        .accordion::after {
+            content: '\002B'; /* 加號 */
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active::after {
+            content: '\2212'; /* 減號 */
             transform: rotate(180deg);
         }
-        /* 圖片佔位符樣式 */
-        .image-placeholder {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+
+        .panel {
+            padding: 0 1rem;
+            background-color: transparent;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .panel p {
+            padding: 1.2rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* === 資源庫 (Resource Library Grid) === */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid var(--accent-color);
+            border-top: 5px solid var(--secondary-color);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            font-weight: 500;
+            flex-direction: column;
+        }
+
+        .card.ielts-card {
+            border-top-color: #e53e3e; /* 區分雅思的顏色 */
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--accent-color);
+            color: var(--text-main);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.toeic { background-color: #ebf8ff; color: #2b6cb0; }
+        .tag.ielts { background-color: #fff5f5; color: #c53030; }
+        .tag.vocab { background-color: #e6fffa; color: #285e61; }
+        .tag.listen { background-color: #faf5ff; color: #702459; }
+
+        .no-results {
+            display: none;
+            grid-column: 1 / -1;
             text-align: center;
-            padding: 1rem;
+            padding: 3rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--accent-color);
+        }
+
+        /* === 響應式設計 === */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .section-title { font-size: 1.5rem; }
+            .faq-section { padding: 1.5rem; }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body>
 
-    <!-- 導航列與搜尋框 -->
-    <nav class="bg-blue-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center py-4">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <svg class="h-8 w-8 mr-3 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h1 class="text-xl font-bold tracking-wider">資本與金融危機學習網</h1>
-                </div>
-                <div class="w-full md:w-1/3 relative">
-                    <input type="text" id="searchInput" placeholder="搜尋國家、事件或關鍵字 (例: 索羅斯, 熱錢)..." 
-                           class="w-full pl-10 pr-4 py-2 rounded-full text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-inner">
-                    <svg class="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 首圖與簡介 (圖片展示區) -->
-    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row">
-            <div class="md:w-1/2 image-placeholder min-h-[300px]">
-                            </div>
-            <div class="md:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                <h2 class="text-3xl font-bold text-blue-900 mb-4">資本是如何引爆全球金融危機的？</h2>
-                <p class="text-slate-600 leading-relaxed mb-6">
-                    1994年底到1998年，短短四年間，墨西哥、東南亞、韓國、俄羅斯等數十個國家接連出現金融危機。這不是單一事件，背後有一條統一的脈絡：**資本世界運行的邏輯**。本網站專為學生設計，帶你拆解「華盛頓共識」、熱錢湧入、美聯儲加息與國際空頭（如索羅斯）如何聯手引發這場經濟風暴。
-                </p>
-                <a href="#resource-library" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors w-max">
-                    開始探索資源庫
-                </a>
-            </div>
+    <header>
+        <h1>怕渴英文 Parker English</h1>
+        <p>為學生打造的 TOEIC 多益與 IELTS 雅思專屬學習與資源庫，輕鬆掌握高分必考單字與聽力。</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜尋主題、單字或測驗... (例如: 電腦、雅思、聽力)">
         </div>
     </header>
 
-    <!-- 資源庫 (Resource Library) -->
-    <section id="resource-library" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h3 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-600 pl-3">學習資源庫：連鎖崩盤史</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="resourceGrid">
-            <!-- 資源卡片 1 -->
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden searchable-item">
-                <div class="h-40 image-placeholder text-sm">
-                                    </div>
-                <div class="p-5">
-                    <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-blue-600 bg-blue-50 mb-2">1994年</span>
-                    <h4 class="text-lg font-bold mb-2">前菜：墨西哥危機</h4>
-                    <p class="text-sm text-slate-600 line-clamp-4">
-                        墨西哥在美國勸說下開放資本管制並綁定美元匯率。美國降息時，大量基金湧入；94年美國加息，外資撤離。墨西哥政府被迫發行高達10%利息的短期美元債續命，最終外匯存底耗盡，宣布比索脫鉤，三天內暴跌超40%。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 資源卡片 2 -->
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden searchable-item">
-                <div class="h-40 image-placeholder text-sm">
-                                    </div>
-                <div class="p-5">
-                    <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-50 mb-2">1997年</span>
-                    <h4 class="text-lg font-bold mb-2">爆發：東南亞與韓國崩盤</h4>
-                    <p class="text-sm text-slate-600 line-clamp-4">
-                        日本低息熱錢大量湧入亞洲「經濟奇蹟」國家，吹起房地產與信貸泡沫。隨後日本銀行因自身壞帳抽離資金，加上索羅斯等空頭見機大舉做空泰銖。泰國政府耗盡外匯儲備後投降，引發骨牌效應，馬來西亞、印尼、韓國相繼失守。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 資源卡片 3 -->
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden searchable-item">
-                <div class="h-40 image-placeholder text-sm">
-                                    </div>
-                <div class="p-5">
-                    <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-green-600 bg-green-50 mb-2">1997-1998年</span>
-                    <h4 class="text-lg font-bold mb-2">鏖戰：香港金融保衛戰</h4>
-                    <p class="text-sm text-slate-600 line-clamp-4">
-                        空頭資本三度狙擊具備龐大外匯儲備的香港。他們利用「做空港幣迫使利率上升，利率上升導致股市下跌」的連鎖反應獲利。最終香港金管局破天荒動用千億外匯儲備直接買入港股，在單日交易量達790億港元的大決戰中成功擊退空頭。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 資源卡片 4 -->
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden searchable-item">
-                <div class="h-40 image-placeholder text-sm">
-                                    </div>
-                <div class="p-5">
-                    <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-purple-600 bg-purple-50 mb-2">1998年</span>
-                    <h4 class="text-lg font-bold mb-2">蔓延：俄羅斯債務違約</h4>
-                    <p class="text-sm text-slate-600 line-clamp-4">
-                        受亞洲危機及油價暴跌影響，外資瘋狂拋售俄羅斯短期國債(GKO)，導致發債利率飆升至驚人的150%。政府僅利息支出就超過全國稅收。1998年8月，俄羅斯宣布盧布貶值與債務違約，甚至間接導致美國大型對沖基金(LTCM)暴雷。
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 搜尋無結果提示 -->
-        <div id="noResults" class="hidden text-center py-10 text-slate-500">
-            找不到符合的資源或常見問題，請嘗試其他關鍵字。
-        </div>
-    </section>
-
-    <!-- 常見問題 FAQ (Accordion 折疊選單) -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-12">
-        <h3 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-600 pl-3">核心概念 FAQ</h3>
-        
-        <div class="space-y-4" id="faqContainer">
-            <!-- FAQ 1 -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden searchable-item">
-                <button class="accordion-header w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
-                    <span class="font-semibold text-lg text-slate-700">什麼是「華盛頓共識」，它如何為危機埋下伏筆？</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content bg-gray-50 px-6">
-                    <p class="py-4 text-slate-600 leading-relaxed">
-                        「華盛頓共識」是1989年由美國提出的一套政策主張，核心思想是**「金融自由化」**。它鼓勵發展中國家全面開放貨幣、貿易和資本流動限制，讓市場無形之手來調控，減少政府干預。雖然這讓新興市場獲得了大量外資，但也因為缺乏健全的金融監管體系，讓國家門戶大開，成為國際投機資本（熱錢）可以隨意進出和攻擊的目標。
-                    </p>
-                </div>
-            </div>
-
-            <!-- FAQ 2 -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden searchable-item">
-                <button class="accordion-header w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
-                    <span class="font-semibold text-lg text-slate-700">熱錢 (Hot Money) 是什麼？它有什麼危險？</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content bg-gray-50 px-6">
-                    <p class="py-4 text-slate-600 leading-relaxed">
-                        熱錢是指像「熱鍋上的螞蟻」一樣，到處尋找短期高額回報的國際投機資金。它的危險在於兩點：<br><br>
-                        1. **不關心實體經濟**：熱錢通常湧入賺錢最快的金融和房地產市場，容易迅速吹起經濟泡沫。<br>
-                        2. **來得快，跑得更快**：一旦風向改變（例如美國加息或母國銀行缺錢），熱錢會瞬間火速撤離，導致借款國家的現金流立刻被抽乾，引發信貸危機與貨幣崩盤。
-                    </p>
-                </div>
-            </div>
-
-            <!-- FAQ 3 -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden searchable-item">
-                <button class="accordion-header w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
-                    <span class="font-semibold text-lg text-slate-700">索羅斯 (George Soros) 的「做空策略」是如何運作的？</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content bg-gray-50 px-6">
-                    <p class="py-4 text-slate-600 leading-relaxed">
-                        索羅斯的策略專門尋找**經濟快不行且實行「固定匯率」**的國家：<br>
-                        1. **暗中佈局**：提前在市場買入看跌期權或做空各種期貨。<br>
-                        2. **正面進攻**：時機成熟時，用海量資金拋售該國貨幣，逼迫該國央行消耗外匯儲備來維持匯率。<br>
-                        3. **引發羊群效應**：市場其他投資人發現該國遭攻擊且經濟確實有問題後，會恐慌性跟風做空。<br>
-                        4. **獲利離場**：一旦該國外匯儲備耗盡、宣布貨幣脫鉤貶值，索羅斯之前佈局的空頭倉位就會獲得暴利。選擇固定匯率國家的好處是：即使攻擊失敗，匯率不變，做空匯率這端也不會血虧。
-                    </p>
-                </div>
-            </div>
-
-            <!-- FAQ 4 -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden searchable-item">
-                <button class="accordion-header w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
-                    <span class="font-semibold text-lg text-slate-700">IMF 在金融危機中扮演了什麼角色？為什麼被詬病？</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content bg-gray-50 px-6">
-                    <p class="py-4 text-slate-600 leading-relaxed">
-                        IMF (國際貨幣基金組織) 在危機爆發時提供了千億美元的緊急救助貸款，幫助國家穩住現金流。但它引發了兩個重大爭議：<br><br>
-                        1. **道德風險 (Moral Hazard)**：在墨西哥危機中，IMF輕易出手救市，讓國際資本誤以為投資新興市場「高收益且零風險（有IMF兜底）」，導致後來更多熱錢肆無忌憚湧入亞洲。<br>
-                        2. **苛刻的救助條件**：IMF在提供貸款時，強迫受援國採取非常激進的緊縮政策和改革，反而加劇了當地的經濟衰退與高失業率，導致受助國民眾極度反感。
-                    </p>
-                </div>
-            </div>
+    <main>
+        <!-- 常見問題 FAQ (Accordion) -->
+        <section class="faq-section">
+            <h2 class="section-title">學習常見問題 FAQ</h2>
             
-            <!-- FAQ 5 -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden searchable-item">
-                <button class="accordion-header w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors">
-                    <span class="font-semibold text-lg text-slate-700">我們能從這場危機中學到什麼資本運作的邏輯？</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="accordion-content bg-gray-50 px-6">
-                    <p class="py-4 text-slate-600 leading-relaxed">
-                        影片強調，資本本身並非單純的「萬惡」或「吸血鬼」，它是一個高度抽象的集合體，每個資本（養老金、投行、對沖基金）都只是在追求自身利益最大化。這場危機給世界的教訓是：<br>
-                        **金融自由化不能簡單粗暴地實施。越自由的市場，需要配備越完善、越嚴格的監管規則，並且國家必須擁有充足的外匯儲備來抵禦進攻。**必須在「自由」和「穩定」之間找到平衡點。
-                    </p>
-                </div>
+            <button class="accordion">本資源庫包含哪些考試類別？</button>
+            <div class="panel">
+                <p>我們主要收錄了「怕渴英文」的兩大考試資源：<strong>TOEIC 多益</strong> 與 <strong>IELTS 雅思</strong>。涵蓋了高分必考單字 (10 min 系列) 以及高分聽力訓練、模擬試題。</p>
             </div>
-        </div>
-    </section>
 
-    <!-- 頁尾 -->
-    <footer class="bg-blue-900 text-blue-100 py-8 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>© 2026 資本與金融危機學習網. 專為教育與學習用途設計.</p>
-            <p class="text-sm mt-2 text-blue-300">基於「資本是如何引爆全球金融危机的？」文本資料編寫</p>
-        </div>
+            <button class="accordion">多益 (TOEIC) 單字資源涵蓋哪些主題？</button>
+            <div class="panel">
+                <p>多益單字注重職場與商務實用性。收錄的主題包含：Computers (電腦)、Office Supplies (辦公用品)、Corporate Development (企業發展)、Marketing (行銷)、Purchasing (採購)、Contracts (契約) 以及法務、客服等高頻考點。</p>
+            </div>
+
+            <button class="accordion">雅思 (IELTS) 字彙與多益有何不同？</button>
+            <div class="panel">
+                <p>雅思字彙更偏向學術與社會生活深度。我們收錄了：Academic Progress (學業進程)、Campus Life (校園生活)、Dietary Habit (飲食習慣)、Social Ties (社交關係)、Legal System (法律體系) 等適合留學與海外生活的單字。</p>
+            </div>
+
+            <button class="accordion">聽力訓練的內容是什麼？</button>
+            <div class="panel">
+                <p>「多益高分聽力訓練」系列提供了多個單元（例如單元 31~50）的實戰模擬。內容包含 Part 2 應答問題與 Part 3 簡短對話，幫助學生習慣各種口音、連音與商務溝通情境。</p>
+            </div>
+        </section>
+
+        <!-- 課程資源庫 -->
+        <section>
+            <h2 class="section-title">課程與教材資源庫</h2>
+            <div class="grid-container" id="resourceGrid">
+                
+                <!-- 資源卡片 1 -->
+                <div class="card" data-search="多益 toeic 單字 10 min 56 computers 電腦 laptop program database">
+                    <h3>多益單字 10 min ⎮ 56 Computers 電腦</h3>
+                    <p>學習與電腦科技相關的高分單字。重點單字包含：laptop (筆記型電腦), program (程式), database (資料庫), waterproof (防水) 等。</p>
+                    <div class="tags">
+                        <span class="tag toeic">TOEIC 多益</span>
+                        <span class="tag vocab">必考單字</span>
+                        <span class="tag">科技電腦</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 2 -->
+                <div class="card" data-search="多益 toeic 單字 10 min 54 office supplies 辦公用品 bulletin board scanner photocopier">
+                    <h3>多益單字 10 min ⎮ 54 Office Supplies 辦公用品</h3>
+                    <p>掌握辦公室情境的必備詞彙，如 bulletin board (佈告欄), scanner (掃描機), photocopier (影印機) 及文具用品等。</p>
+                    <div class="tags">
+                        <span class="tag toeic">TOEIC 多益</span>
+                        <span class="tag vocab">必考單字</span>
+                        <span class="tag">職場辦公</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 3 -->
+                <div class="card ielts-card" data-search="ielts 雅思 字彙 unit 20 校園生活 campus life seminar dorm examination">
+                    <h3>IELTS 字彙 ⎮ Unit 20 校園生活 Campus Life</h3>
+                    <p>雅思考生必備的校園生活語彙，涵蓋 seminar (研討會), dorm (宿舍), examination (考試) 及學術報告相關用字。</p>
+                    <div class="tags">
+                        <span class="tag ielts">IELTS 雅思</span>
+                        <span class="tag vocab">字彙</span>
+                        <span class="tag">校園學術</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 4 -->
+                <div class="card" data-search="多益 toeic 高分聽力訓練 39 listening 模擬試題 part 2 part 3">
+                    <h3>多益高分聽力訓練 ⎮ 39 ⎮ TOEIC Listening</h3>
+                    <p>多益聽力實戰演練，包含機場廣播、失物招領、會議安排等 Part 2 與 Part 3 常見生活與職場對話情境訓練。</p>
+                    <div class="tags">
+                        <span class="tag toeic">TOEIC 多益</span>
+                        <span class="tag listen">聽力訓練</span>
+                        <span class="tag">實戰模擬</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 5 -->
+                <div class="card ielts-card" data-search="ielts 雅思 字彙 unit 12 飲食習慣 dietary habit organic alcohol cafeteria">
+                    <h3>IELTS 字彙 ⎮ Unit 12 飲食習慣 Dietary Habit</h3>
+                    <p>深入探討飲食文化與健康，必備單字包含 organic (有機的), alcohol (酒精), cafeteria (自助餐廳), refreshment (茶點)。</p>
+                    <div class="tags">
+                        <span class="tag ielts">IELTS 雅思</span>
+                        <span class="tag vocab">字彙</span>
+                        <span class="tag">生活飲食</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 6 -->
+                <div class="card" data-search="多益 toeic 單字 10 min 67 marketing 行銷 commodity market share publicity">
+                    <h3>多益單字 10 min ⎮ 67 Marketing 行銷</h3>
+                    <p>商業行銷必備核心詞彙。包含 commodity (商品), market share (市占率), publicity (宣傳), advertising campaign (廣告活動)。</p>
+                    <div class="tags">
+                        <span class="tag toeic">TOEIC 多益</span>
+                        <span class="tag vocab">必考單字</span>
+                        <span class="tag">商業行銷</span>
+                    </div>
+                </div>
+                
+                <!-- 資源卡片 7 -->
+                <div class="card" data-search="多益 toeic 高分必考單字 81 verbal phrases 動詞片語 participate concentrate">
+                    <h3>多益高分必考單字 ⎮ 81 Verbal Phrases 動詞片語</h3>
+                    <p>熟記多益常考的動詞與介系詞搭配，如 participate in (參與), concentrate on (專注於), apologize for (為...道歉)。</p>
+                    <div class="tags">
+                        <span class="tag toeic">TOEIC 多益</span>
+                        <span class="tag vocab">片語文法</span>
+                        <span class="tag">高分必考</span>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 8 -->
+                <div class="card ielts-card" data-search="ielts 雅思 字彙 unit 34 法律體系 legal system court mandatory prejudice">
+                    <h3>IELTS 字彙 ⎮ Unit 34 法律體系 Legal System</h3>
+                    <p>雅思學術閱讀與寫作高頻主題。學習 court (法庭), mandatory (願制的), prejudice (偏見) 等司法與社會規範詞彙。</p>
+                    <div class="tags">
+                        <span class="tag ielts">IELTS 雅思</span>
+                        <span class="tag vocab">字彙</span>
+                        <span class="tag">社會法律</span>
+                    </div>
+                </div>
+
+                <!-- 無搜尋結果提示 -->
+                <div class="no-results" id="noResultsMsg">
+                    找不到符合「<span id="searchKeyword"></span>」的資源，請嘗試使用其他關鍵字 (例如: 雅思、聽力、科技)。
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 怕渴英文 Parker English 學生學習資源庫. All rights reserved. <br> (此為依據教材建立之示範網站)</p>
     </footer>
 
-    <!-- 互動式 JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 折疊式選單 (Accordion) 邏輯 ---
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
             
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    // 切換當前項目的展開/收合狀態
-                    const content = header.nextElementSibling;
-                    const icon = header.querySelector('.chevron');
+            /* === 折疊式選單 (Accordion) 互動邏輯 === */
+            const accordions = document.querySelectorAll('.accordion');
+
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    // 切換目前的 active 狀態
+                    this.classList.toggle('active');
                     
-                    const isOpen = content.classList.contains('open');
+                    // 獲取相鄰的 panel 內容區塊
+                    const panel = this.nextElementSibling;
                     
-                    // 如果希望一次只打開一個，可以取消註解以下代碼
-                    /*
-                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-                    document.querySelectorAll('.chevron').forEach(i => i.classList.remove('rotate-180'));
-                    */
-                    
-                    if (!isOpen) {
-                        content.classList.add('open');
-                        icon.classList.add('rotate-180');
+                    // 動態設定高度以產生滑動動畫
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
                     } else {
-                        content.classList.remove('open');
-                        icon.classList.remove('rotate-180');
-                    }
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    } 
                 });
             });
 
-            // --- 搜尋框邏輯 ---
+            /* === 搜尋框 (Search Filter) 邏輯 === */
             const searchInput = document.getElementById('searchInput');
-            const searchableItems = document.querySelectorAll('.searchable-item');
-            const noResultsMsg = document.getElementById('noResults');
+            const cards = document.querySelectorAll('.card');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+            const searchKeywordSpan = document.getElementById('searchKeyword');
 
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase().trim();
-                let hasVisibleItems = false;
+            searchInput.addEventListener('input', function() {
+                const filterText = this.value.toLowerCase().trim();
+                let visibleCount = 0;
 
-                searchableItems.forEach(item => {
-                    const textContent = item.textContent.toLowerCase();
-                    if (textContent.includes(query)) {
-                        item.style.display = '';
-                        hasVisibleItems = true;
+                cards.forEach(card => {
+                    // 我們將可搜尋的關鍵字放在 data-search 屬性中，結合標題與內文提升準確度
+                    const searchableContent = card.getAttribute('data-search') + " " + card.innerText.toLowerCase();
+
+                    if (searchableContent.includes(filterText)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
                     } else {
-                        item.style.display = 'none';
+                        card.style.display = 'none';
                     }
                 });
 
-                // 顯示或隱藏「找不到結果」提示
-                if (!hasVisibleItems && query !== '') {
-                    noResultsMsg.classList.remove('hidden');
+                // 判斷是否顯示「無結果」訊息
+                if (visibleCount === 0) {
+                    searchKeywordSpan.textContent = this.value;
+                    noResultsMsg.style.display = 'block';
                 } else {
-                    noResultsMsg.classList.add('hidden');
+                    noResultsMsg.style.display = 'none';
                 }
             });
         });
